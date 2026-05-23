@@ -30,6 +30,9 @@ public class NotificationLog {
     private PushType pushType;
 
     @Column(nullable = false)
+    private String articleId;
+
+    @Column(nullable = false)
     private String articleTitle;
 
     @Enumerated(EnumType.STRING)
@@ -43,4 +46,14 @@ public class NotificationLog {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    public static NotificationLog of(String deviceId, PushType pushType, String articleId, String articleTitle, CategoryType articleCategory, String status) {
+        return NotificationLog.builder()
+                .deviceId(deviceId)
+                .pushType(pushType)
+                .articleId(articleId)
+                .articleTitle(articleTitle)
+                .articleCategory(articleCategory)
+                .status(status)
+                .build();
+    }
 }
