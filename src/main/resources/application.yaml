@@ -23,3 +23,7 @@ spring:
 logging:
   level:
     com.yna.push: DEBUG
+
+rss:
+  max-article-count: 1000
+  schedule-rate: 600000
