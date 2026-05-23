@@ -1,3 +1,25 @@
 spring:
   application:
     name: it-prework
+
+  datasource:
+    url: jdbc:sqlite:app.db
+    driver-class-name: org.sqlite.JDBC
+
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    com.yna.push: DEBUG
