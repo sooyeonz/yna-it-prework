@@ -1,7 +1,10 @@
 package com.yna.itprework.notification.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Random;
 
+@Service
 public class PushNotificationServiceImpl implements PushNotificationService {
 
     private static final Random random = new Random();
