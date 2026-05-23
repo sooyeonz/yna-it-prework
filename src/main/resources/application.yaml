@@ -22,7 +22,9 @@ spring:
 
 logging:
   level:
-    com.yna.push: DEBUG
+    com.yna.itprework: DEBUG
+  file:
+    name: logs/it-prework.log
 
 rss:
   max-article-count: 1000
