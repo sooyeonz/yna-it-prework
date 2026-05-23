@@ -28,9 +28,14 @@ public class Article {
     @Column(nullable = false)
     private String link;
 
+    @Column(nullable = false)
     private String author;
 
     @Column(nullable = false)
     private LocalDateTime pubDate;
 
+    public static Article of(String articleId, String title, CategoryType category,
+                             String link, String author, LocalDateTime pubDate) {
+        return new Article(articleId, title, category, link, author, pubDate);
+    }
 }
