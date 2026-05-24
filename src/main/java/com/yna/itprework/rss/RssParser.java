@@ -61,14 +61,21 @@ public class RssParser {
     private Article toArticle(Element item, CategoryType category) {
         try {
             String link = getTagValue(item, "link");
+            String title = getTagValue(item, "title");
+            String author = getTagValue(item, "dc:creator");
             String pubDateStr = getTagValue(item, "pubDate");
+
+            if (link == null || title == null || author == null || pubDateStr == null) {
+                log.warn("필수 필드 누락");
+                return null;
+            }
 
             return Article.of(
                     extractArticleId(link),
-                    getTagValue(item, "title"),
+                    title,
                     category,
                     link,
-                    getTagValue(item, "dc:creator"),
+                    author,
                     ZonedDateTime.parse(pubDateStr, PUB_DATE_FORMATTER).toLocalDateTime()
             );
         } catch (Exception e) {
