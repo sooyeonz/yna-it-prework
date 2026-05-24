@@ -1,6 +1,8 @@
 package com.yna.itprework.article.repository;
 
+import com.yna.itprework.article.CategoryType;
 import com.yna.itprework.article.entity.Article;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +18,6 @@ public interface ArticleRepository extends JpaRepository<Article, String> {
 
     @Query("SELECT a.articleId FROM Article a ORDER BY a.pubDate ASC")
     List<String> findOldestArticleIds(Pageable pageable);
+
+    Page<Article> findByCategoryOrderByPubDateDesc(CategoryType category, Pageable pageable);
 }
