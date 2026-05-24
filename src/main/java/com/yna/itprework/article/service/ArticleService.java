@@ -5,6 +5,7 @@ import com.yna.itprework.article.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,16 +27,17 @@ public class ArticleService {
      * 신규 기사만 필터링하여 저장, 최대 기사 수 초과 시 오래된 기사 삭제
      */
     @Transactional
-    public void saveNewArticles(List<Article> articles) {
+    public List<Article> saveNewArticles(List<Article> articles) {
         List<Article> newArticles = filterDuplicates(articles);
         if (newArticles.isEmpty()) {
-            return;
+            return List.of();
         }
 
         articleRepository.saveAll(newArticles);
         deleteOldArticlesIfExceedsLimit();
 
         log.debug("기사 저장 완료 - 신규: {}건", newArticles.size());
+        return newArticles;
     }
 
     /**
@@ -62,11 +64,8 @@ public class ArticleService {
             return;
         }
 
-        long deleteCount = count - maxArticleCount;
-        List<String> idsToDelete = articleRepository.findAllArticleIdsSortedByPubDateAsc()
-                .stream()
-                .limit(deleteCount)
-                .toList();
+        int deleteCount = (int) (count - maxArticleCount);
+        List<String> idsToDelete = articleRepository.findOldestArticleIds(PageRequest.of(0, deleteCount));
 
         articleRepository.deleteAllById(idsToDelete);
         log.debug("오래된 기사 삭제: {}건", idsToDelete.size());
