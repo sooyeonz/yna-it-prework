@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko" class="[scrollbar-gutter:stable]">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>연합뉴스</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: "oklch(0.985 0.004 80)",
+                        surface: "oklch(1 0 0)",
+                        ink: "oklch(0.18 0.01 80)",
+                        "ink-2": "oklch(0.42 0.01 80)",
+                        "ink-3": "oklch(0.62 0.008 80)",
+                        line: "oklch(0.92 0.005 80)",
+                        "line-strong": "oklch(0.84 0.006 80)",
+                        read: "oklch(0.74 0.006 80)",
+                        "read-bg": "oklch(0.965 0.003 80)",
+                        accent: "#0068D1",
+                        "cat-POL": "oklch(0.48 0.14 25)",
+                        "cat-POL-bg": "oklch(0.965 0.025 25)",
+                        "cat-NK": "oklch(0.48 0.14 195)",
+                        "cat-NK-bg": "oklch(0.965 0.025 195)",
+                        "cat-ECON": "oklch(0.48 0.14 145)",
+                        "cat-ECON-bg": "oklch(0.965 0.025 145)",
+                        "cat-IND": "oklch(0.48 0.14 250)",
+                        "cat-IND-bg": "oklch(0.965 0.025 250)",
+                        "cat-SOC": "oklch(0.48 0.14 65)",
+                        "cat-SOC-bg": "oklch(0.965 0.025 65)",
+                    },
+                    fontFamily: {
+                        sans: ['"Pretendard Variable"', "Pretendard", "system-ui", "sans-serif"],
+                    },
+                    maxWidth: {column: "880px"},
+                    spacing: {header: "76px"},
+                },
+            },
+        };
+    </script>
+    
+</head>
+<body class="bg-bg font-sans text-ink antialiased">
+
+<div class="max-w-column mx-auto bg-surface min-h-screen border-x border-line">
+
+    <header class="sticky top-0 z-10 bg-surface border-b border-line px-7 h-header flex items-center">
+      <span class="text-[26px] font-black tracking-[-0.02em] text-ink">
+        연합뉴스
+      </span>
+    </header>
+
+    <nav id="tabs" class="sticky top-header z-10 border-b border-line flex overflow-x-auto"></nav>
+
+    <div id="article-list" class="px-7"></div>
+
+</div>
+
+<script src="/js/tabState.js"></script>
+<script src="/js/render.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
