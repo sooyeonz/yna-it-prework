@@ -1,10 +1,13 @@
 package com.yna.itprework.article.service;
 
+import com.yna.itprework.article.CategoryType;
 import com.yna.itprework.article.entity.Article;
 import com.yna.itprework.article.repository.ArticleRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,13 +44,32 @@ public class ArticleService {
     }
 
     /**
+     * 카테고리별 기사 목록 반환 (최신순, 페이지네이션)
+     */
+    @Transactional(readOnly = true)
+    public Page<Article> getArticlesByCategory(CategoryType category, int page, int size) {
+        return articleRepository.findByCategoryOrderByPubDateDesc(category, PageRequest.of(page, size));
+    }
+
+    /**
+     * 기사 읽음 처리
+     */
+    @Transactional
+    public void readArticle(String articleId) {
+        Article article = articleRepository.findById(articleId)
+                .orElseThrow(() -> new EntityNotFoundException("기사를 찾을 수 없습니다. articleId: " + articleId));
+        article.read();
+    }
+
+
+    /**
      * 이미 저장된 기사를 제외한 신규 기사만 반환
      */
     private List<Article> filterDuplicates(List<Article> articles) {
         if (articles.isEmpty()) {
             return List.of();
         }
-        
+
         Set<String> incomingIds = articles.stream()
                 .map(Article::getArticleId)
                 .collect(Collectors.toSet());
