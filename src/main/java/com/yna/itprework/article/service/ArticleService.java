@@ -44,6 +44,10 @@ public class ArticleService {
      * 이미 저장된 기사를 제외한 신규 기사만 반환
      */
     private List<Article> filterDuplicates(List<Article> articles) {
+        if (articles.isEmpty()) {
+            return List.of();
+        }
+        
         Set<String> incomingIds = articles.stream()
                 .map(Article::getArticleId)
                 .collect(Collectors.toSet());
