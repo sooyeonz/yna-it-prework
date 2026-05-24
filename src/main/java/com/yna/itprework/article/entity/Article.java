@@ -36,8 +36,15 @@ public class Article {
     @Column(nullable = false)
     private LocalDateTime pubDate;
 
+    @Column(nullable = false)
+    private boolean isRead = false;
+
     public static Article of(String articleId, String title, CategoryType category,
                              String link, String author, LocalDateTime pubDate) {
-        return new Article(articleId, title, category, link, author, pubDate);
+        return new Article(articleId, title, category, link, author, pubDate, false);
+    }
+
+    public void read() {
+        this.isRead = true;
     }
 }
