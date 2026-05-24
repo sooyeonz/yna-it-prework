@@ -50,9 +50,9 @@ public class RssParser {
      */
     private Document fetchDocument(String url) throws Exception {
         InputStream inputStream = URI.create(url).toURL().openStream();
-        return DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder()
-                .parse(inputStream);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(false);
+        return factory.newDocumentBuilder().parse(inputStream);
     }
 
     /**
