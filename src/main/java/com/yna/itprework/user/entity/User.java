@@ -38,9 +38,15 @@ public class User {
             return false;
         }
 
-        String[] parts = dndTime.split("-");
-        LocalTime start = LocalTime.parse(parts[0].trim());
-        LocalTime end = LocalTime.parse(parts[1].trim());
+        LocalTime start;
+        LocalTime end;
+        try {
+            String[] parts = dndTime.split("-");
+            start = LocalTime.parse(parts[0].trim());
+            end = LocalTime.parse(parts[1].trim());
+        } catch (Exception e) {
+            return false;
+        }
 
         if (start.isAfter(end)) {
             return !now.isBefore(start) || !now.isAfter(end);
