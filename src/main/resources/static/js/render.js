@@ -15,10 +15,10 @@ const render = {
         document.getElementById("tabs").innerHTML = tabs.map(tab => `
       <button
         data-tab-key="${tab.key}"
-        class="flex-1 py-3.5 whitespace-nowrap text-[15px] transition-colors
+        class="flex-1 py-3.5 whitespace-nowrap text-lg transition-colors
           ${tab.key === current
             ? "bg-accent text-white font-bold"
-            : "bg-surface text-ink-3 hover:text-ink-2 font-medium"}"
+            : "bg-surface text-ink-2 hover:text-accent font-medium"}"
       >${tab.name}</button>
     `).join("");
     },
@@ -74,7 +74,7 @@ function _articleRow(article) {
       data-article-id="${article.articleId}"
       data-article-link="${article.link}"
       data-read="${article.isRead}"
-      class="group py-[22px] border-b border-line cursor-pointer transition-colors data-[read=true]:opacity-80 data-[read=false]:hover:bg-read-bg"
+      class="group px-2 py-5 border-b border-line cursor-pointer transition-colors hover:bg-hover-bg"
     >
       ${isAllTab && article.category ? _chip(article.category, article.categoryName) : ""}
       <p class="text-lg font-bold leading-[1.35] tracking-[-0.015em] text-ink text-pretty mb-2 group-data-[read=true]:text-read group-data-[read=true]:font-medium">
@@ -98,7 +98,7 @@ function _escape(str) {
 function _chip(categoryKey, categoryName) {
     const style = CATEGORY_STYLE[categoryKey] || {};
     return `
-    <div class="inline-flex items-center gap-1.5 px-2 py-[3px] rounded text-[11px] font-bold tracking-[0.04em] w-fit mb-2 ${style.text} ${style.bg} group-data-[read=true]:!text-read group-data-[read=true]:!bg-read-bg">
+    <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-bold tracking-[0.04em] w-fit mb-2 ${style.text} ${style.bg} group-data-[read=true]:!text-read group-data-[read=true]:!bg-read-bg">
       ${categoryName}
     </div>
   `;
