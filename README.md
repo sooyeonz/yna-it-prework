@@ -17,10 +17,10 @@
 **푸시 알림 백엔드**
 
 - RSS 수집: 10분 주기로 5개 카테고리 RSS 피드 수집
-- 중복 제거: article_id 기준 신규 기사만 저장, 최대 1,000건 유지
+- 중복 제거: `article_id` 기준 신규 기사만 저장, 최대 1,000건 유지
 - 유저 매칭: 선호 카테고리 기반 발송 대상 필터링
 - DND 처리: 방해 금지 시간대 유저 발송 제외
-- 푸시 발송: push_type(APNS/FCM)에 따라 분기 발송
+- 푸시 발송: `push_type(APNS/FCM)`에 따라 분기 발송
 - 이력 저장: 발송 결과(success/fail) DB 일괄 저장
 
 ---
@@ -43,17 +43,29 @@
 - 카테고리별 API를 병렬 호출 후 클라이언트에서 병합·정렬
 - 각 기사에 카테고리별(정치·북한·경제·산업·사회) 색상 라벨 표시
 
+**[전체 기사 목록]**
+<img width="1512" height="949" alt="image" src="https://github.com/user-attachments/assets/4cd2928a-8242-40b7-875a-6124a1e9e141" />
+
+
 **각 카테고리 탭**
 
 - 탭 클릭 시 해당 카테고리로 필터링
 - 호버 시 글씨 파란색 하이라이트
 - 선택된 탭은 파란색 배경으로 강조
 
+**[정치 기사 목록]**
+<img width="1512" height="949" alt="image" src="https://github.com/user-attachments/assets/2ae8fe73-10ed-4f3b-815c-5978306363cf" />
+**[북한 기사 목록 (읽은 기사 회색 처리)]**
+<img width="1512" height="949" alt="image" src="https://github.com/user-attachments/assets/52d28cf4-ec89-4f03-b607-fc0812fead92" />
+
 **읽음/미읽음 구분**
 
 - 호버 시 배경 하이라이트
 - 기사 클릭 즉시 읽음 상태로 전환
 - 읽은 기사는 기사 제목, 관련 데이터 회색으로 변경
+
+**[읽은 기사 회색 처리, 마우스 호버 시 배경 하이라이트]**
+<img width="1512" height="949" alt="image" src="https://github.com/user-attachments/assets/2a80a766-0c49-4529-8876-8b69b3895a04" />
 
 **무한 스크롤**
 
@@ -63,6 +75,11 @@
 
 - 기사 클릭 시 원문 URL을 새 탭(`window.open`)으로 열기
 - 목록 탭에서는 읽음 상태가 즉시 반영
+
+**[원문 기사 새 탭에서 열림]**
+<img width="1512" height="949" alt="image" src="https://github.com/user-attachments/assets/2b42c362-9c60-4c09-8bac-b7f4234a293d" />
+**[읽음 상태 즉시 반영]**
+<img width="1512" height="949" alt="image" src="https://github.com/user-attachments/assets/3a633fc8-6ec9-4b18-90d6-43e2a3799c03" />
 
 ---
 
@@ -336,7 +353,7 @@ ORDER BY u.id;
 
 ## AI 활용 내역
 
-Claude와 Claude Code를 활용해 프로젝트 개발을 진행했습니다.
+**Claude**와 **Claude Code**를 활용해 프로젝트 개발을 진행했습니다.
 
 ### 활용 내용
 
@@ -346,8 +363,8 @@ Claude와 Claude Code를 활용해 프로젝트 개발을 진행했습니다.
 
 **리뷰 및 리팩토링**
 
-- 백엔드 전체 코드에서 SOLID 원칙 위반, N+1 쿼리 문제, 트랜잭션 범위 오류를 분석하도록 요청
-- 프론트엔드 코드에서 버그 탐지 및 수정
+- 백엔드 전체 코드에서 **SOLID 원칙 위반, N+1 쿼리 문제, 트랜잭션 범위 오류**를 분석하도록 요청
+- 프론트엔드 코드에서 **버그 탐지** 및 수정
 
 **적용 기준**
 
