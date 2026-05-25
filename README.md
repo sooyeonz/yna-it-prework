@@ -309,6 +309,12 @@ ORDER BY u.id;
 
 ---
 
+## 과제 2) 실행 결과가 담긴 CSV 파일 
+- 프로젝트 루트 디렉토리에 위치
+- 파일명: `articles.csv`, `notification_logs.csv`
+
+---
+
 ## 주요 설정 (`application.yaml`)
 
 | 항목                      | 기본값                  | 설명             |
