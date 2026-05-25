@@ -12,7 +12,7 @@
 - 기사 정렬: `pubDate` 최신순 표시
 - 무한 스크롤: IntersectionObserver로 스크롤 끝에서 다음 페이지 자동 로드
 - 읽음 상태: 기사 클릭 시 서버 DB 저장 (`PATCH /api/articles/{articleId}/read`)
-- 읽음 시각화: 기사 제목, 관련 데이터 흐리게
+- 읽음 시각화: 기사 제목, 관련 데이터 흐리게 표시
 
 **푸시 알림 백엔드**
 
@@ -100,7 +100,7 @@
 
 ## 실행 방법
 
-**사전 조건:** Java 17 이상
+**조건:** Java 17 이상
 
 **macOS / Linux**
 
@@ -108,9 +108,12 @@
 ./gradlew bootRun
 ```
 
-**Windows**
+**Windows (PowerShell / cmd)**
 
 ```bash
+./gradlew bootRun
+
+# 위 명령어가 안 될 경우
 gradlew.bat bootRun
 ```
 
@@ -236,6 +239,8 @@ src/main/resources/static/
 ---
 
 ## SQLite DB 확인 방법
+
+**조건:** sqlite3가 설치되어 있어야 합니다.
 
 **DB 파일 경로**
 
