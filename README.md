@@ -12,7 +12,7 @@
 - 기사 정렬: `pubDate` 최신순 표시
 - 무한 스크롤: IntersectionObserver로 스크롤 끝에서 다음 페이지 자동 로드
 - 읽음 상태: 기사 클릭 시 서버 DB 저장 (`PATCH /api/articles/{articleId}/read`)
-- 읽음 시각화: 읽은 기사: 제목 흐리게, 투명도 90%
+- 읽음 시각화: 기사 제목, 관련 데이터 흐리게
 
 **푸시 알림 백엔드**
 
